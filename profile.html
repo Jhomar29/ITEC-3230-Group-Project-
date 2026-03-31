@@ -9,13 +9,14 @@
 </head>
 <body>
   <div class="app-layout">
+
+    <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar-logo">StudyLink</div>
       <nav class="sidebar-nav">
         <a href="dashboard.html" class="sidebar-link">Dashboard</a>
         <a href="find-groups.html" class="sidebar-link">Find Groups</a>
         <a href="profile.html" class="sidebar-link active">Profile</a>
-        <a href="admin.html" class="sidebar-link">Admin</a>
       </nav>
       <div class="sidebar-user">
         <div class="sidebar-avatar">U</div>
@@ -26,27 +27,88 @@
       </div>
     </aside>
 
+    <!-- Content -->
     <main class="content-area">
-      <div class="base-page-shell">
-        <div class="base-page-header">
-          <div>
-            <div class="page-title">Profile</div>
-            <div class="page-subtitle">Base layout only</div>
+      <div class="page-title mb-20">Profile</div>
+
+      <!-- Profile header -->
+      <div class="profile-header-card mb-20">
+        <div class="profile-avatar-lg">U</div>
+        <div>
+          <div class="profile-name">User</div>
+          <div class="profile-meta">University | Degree Type</div>
+        </div>
+      </div>
+
+      <!-- Edit Information -->
+      <div class="edit-info-card">
+        <div class="edit-info-title">Edit Information</div>
+
+        <div class="form-grid">
+          <!-- Full Name -->
+          <div class="form-field">
+            <label class="form-label">Full Name</label>
+            <input class="form-input" type="text" placeholder="Full Name" />
           </div>
+
+          <!-- Major (Dropdown) -->
+          <div class="form-field">
+            <label class="form-label">Major</label>
+            <select class="form-input">
+              <option>Select Major</option>
+              <option>Information Technology</option>
+              <option>Computer Science</option>
+              <option>Business Administration</option>
+              <option>Engineering</option>
+            </select>
+          </div>
+
+          <!-- Study Year (Dropdown) -->
+          <div class="form-field">
+            <label class="form-label">Study Year</label>
+            <select class="form-input">
+              <option>Select Year</option>
+              <option>1st Year</option>
+              <option>2nd Year</option>
+              <option>3rd Year</option>
+              <option>4th Year</option>
+              <option>Graduate</option>
+            </select>
+          </div>
+
+          <!-- Minor -->
+          <div class="form-field">
+            <label class="form-label">Minor</label>
+            <input class="form-input" type="text" placeholder="Minor" />
+          </div>
+
+          <!-- Interests -->
+          <div class="form-field">
+            <label class="form-label">Interests</label>
+            <input class="form-input" type="text" placeholder="Interests" />
+          </div>
+
+          <!-- Degree Type (Dropdown) -->
+          <div class="form-field">
+            <label class="form-label">Degree Type</label>
+            <select class="form-input">
+              <option>Selec Degree</option>
+              <option>Bachelor of Science</option>
+              <option>Bachelor of Commerce</option>
+              <option>Bachelor of Arts</option>
+              <option>Master's</option>
+              <option>PhD</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-actions" style="margin-top:16px; display:flex; justify-content:flex-end;">
           <button class="btn-primary">Save Changes</button>
-        </div>
-
-        <div class="base-button-row">
-          <button class="btn-secondary">Edit Profile</button>
-          <button class="btn-secondary">Account Details</button>
-        </div>
-
-        <div class="base-content-card">
-          <div class="base-card-title">Profile Content Area</div>
-          <p class="base-card-text">The detailed profile form has been removed so the page is now just a simple base structure.</p>
         </div>
       </div>
     </main>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
