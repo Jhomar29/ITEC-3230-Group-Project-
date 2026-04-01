@@ -12,27 +12,17 @@
     <div class="auth-card">
       <div class="auth-logo">StudyLink</div>
 
-      <!-- Tab switcher -->
       <div class="auth-tabs">
-        <button class="auth-tab active" onclick="showTab('signin')">Sign In</button>
+        <button class="auth-tab active">Sign In</button>
         <button class="auth-tab" onclick="window.location.href='register.html'">Register</button>
       </div>
 
-      <!-- Sign In Form -->
-      <div id="signin-form">
-        <label class="auth-label">University Email</label>
-        <input class="auth-input" type="email" placeholder="name@my.yorku.ca" />
-        <button class="btn-auth" onclick="window.location.href='dashboard.html'">Send Code</button>
-      </div>
+      <label class="auth-label">University Email</label>
+      <input class="auth-input" type="email" placeholder="name@my.yorku.ca" />
+      <button class="btn-auth" onclick="window.location.href='dashboard.html'">Send Code</button>
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    function showTab(tab) {
-      document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-      event.target.classList.add('active');
-    }
-  </script>
 </body>
 </html>
