@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StudyLink — Admin Panel</title>
+  <title>StudyLink &mdash; Admin Panel</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="app-layout">
+
     <aside class="sidebar">
       <div class="sidebar-logo">StudyLink</div>
       <nav class="sidebar-nav">
@@ -17,38 +18,383 @@
         <a href="profile.html" class="sidebar-link">Profile</a>
         <a href="admin.html" class="sidebar-link active">Admin</a>
       </nav>
+      <div class="sidebar-action-divider"></div>
+      <div class="sidebar-actions">
+        <a href="login.html" class="sidebar-action-link danger">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          Log Out
+        </a>
+      </div>
       <div class="sidebar-user">
-        <div class="sidebar-avatar">U</div>
+        <div class="sidebar-avatar">A</div>
         <div class="sidebar-user-info">
-          <div class="name">User</div>
-          <div class="email">user@gmail.com</div>
+          <div class="name">Admin</div>
+          <div class="email">admin&#64;my.yorku.ca</div>
         </div>
       </div>
     </aside>
 
     <main class="content-area">
-      <div class="base-page-shell">
-        <div class="base-page-header">
-          <div>
-            <div class="page-title">Admin Panel</div>
-            <div class="page-subtitle">Base layout only</div>
+      <div class="page-title">Admin Panel</div>
+      <div class="page-subtitle">Manage Your Institution</div>
+
+      <!-- Tab bar (matches PNG: flat underline style) -->
+      <div class="admin-tab-bar">
+        <button class="admin-tab-btn active" onclick="switchTab('overview', this)">Overview</button>
+        <button class="admin-tab-btn" onclick="switchTab('courses', this)">Courses</button>
+        <button class="admin-tab-btn" onclick="switchTab('reports', this)">Reports</button>
+        <button class="admin-tab-btn" onclick="switchTab('students', this)">Students</button>
+      </div>
+
+      <!-- ── OVERVIEW ── -->
+      <div id="tab-overview">
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-number">126</div>
+            <div class="stat-label">Students</div>
           </div>
-          <button class="btn-primary">Primary Action</button>
+          <div class="stat-card">
+            <div class="stat-number">63</div>
+            <div class="stat-label">Courses</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">52</div>
+            <div class="stat-label">Study Groups</div>
+          </div>
         </div>
 
-        <div class="base-button-row">
-          <button class="btn-secondary">Overview</button>
-          <button class="btn-secondary">Courses</button>
-          <button class="btn-secondary">Reports</button>
-          <button class="btn-secondary">Students</button>
+        <div class="section-title mb-12">Recent Reports</div>
+        <div class="report-row">
+          <div class="report-avatar blue">B</div>
+          <div class="report-info">
+            <div class="report-title">Bob reported by Alice</div>
+            <div class="report-meta">Inappropriate Behaviour &middot; ITEC3230 | Mar 28, 2025</div>
+          </div>
+          <button class="btn-primary btn-sm">Open</button>
+        </div>
+        <div class="report-row">
+          <div class="report-avatar maroon">M</div>
+          <div class="report-info">
+            <div class="report-title">Mike reported by Jordan</div>
+            <div class="report-meta">Spam Messages &middot; ITEC3010 | Mar 25, 2025</div>
+          </div>
+          <button class="btn-primary btn-sm">Open</button>
         </div>
 
-        <div class="base-content-card">
-          <div class="base-card-title">Admin Content Area</div>
-          <p class="base-card-text">This page has been reduced to a base page with navigation, buttons, and a placeholder content section.</p>
+        <div class="section-title mb-12 mt-16">All Study Groups</div>
+        <div class="report-row">
+          <div class="report-avatar maroon">M</div>
+          <div class="report-info">
+            <div class="report-title">ITEC3230 - Morning Study Crew</div>
+            <div class="report-meta">ITEC 3230 &middot; 5 Members &middot; Public</div>
+          </div>
+          <button class="btn-primary btn-sm">Open</button>
+        </div>
+        <div class="report-row">
+          <div class="report-avatar blue">A</div>
+          <div class="report-info">
+            <div class="report-title">ITEC3010 - Algo Grinders</div>
+            <div class="report-meta">ITEC 3010 &middot; 8 Members &middot; Private</div>
+          </div>
+          <button class="btn-primary btn-sm">Open</button>
+        </div>
+        <div class="report-row">
+          <div class="report-avatar purple">I</div>
+          <div class="report-info">
+            <div class="report-title">ITEC4020 - Software Engineering Hub</div>
+            <div class="report-meta">ITEC 4020 &middot; 12 Members &middot; Public</div>
+          </div>
+          <button class="btn-primary btn-sm">Open</button>
         </div>
       </div>
+
+      <!-- ── COURSES ── (matches PNG: CODE / COURSE NAME / LEVEL / GROUPS / ACTIONS with Edit) -->
+      <div id="tab-courses" style="display:none">
+        <div class="admin-filter-bar">
+          <input class="admin-search-input" type="text" placeholder="Search by code or name..."
+                 oninput="filterTable('courses-tbody', this.value, [0,1])" />
+          <button class="filter-btn active" onclick="setFilter(this)">All</button>
+          <button class="filter-btn" onclick="setFilter(this)">Undergraduate</button>
+          <button class="filter-btn" onclick="setFilter(this)">Graduate</button>
+        </div>
+        <div class="admin-table-wrapper">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Course Name</th>
+                <th>Level</th>
+                <th>Groups</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="courses-tbody">
+              <tr>
+                <td>ITEC3230</td>
+                <td>Designing User Interfaces</td>
+                <td><span class="tag tag-red" style="font-size:10px;padding:2px 8px">Undergraduate</span></td>
+                <td>2</td>
+                <td><button class="tbl-btn-edit">Edit</button></td>
+              </tr>
+              <tr>
+                <td>ITEC3010</td>
+                <td>Systems Analysis and Design</td>
+                <td><span class="tag tag-red" style="font-size:10px;padding:2px 8px">Undergraduate</span></td>
+                <td>5</td>
+                <td><button class="tbl-btn-edit">Edit</button></td>
+              </tr>
+              <tr>
+                <td>ITEC3020</td>
+                <td>Applied Data Communications</td>
+                <td><span class="tag tag-red" style="font-size:10px;padding:2px 8px">Undergraduate</span></td>
+                <td>9</td>
+                <td><button class="tbl-btn-edit">Edit</button></td>
+              </tr>
+              <tr>
+                <td>ITEC3220</td>
+                <td>Using and Designing Databases</td>
+                <td><span class="tag tag-red" style="font-size:10px;padding:2px 8px">Undergraduate</span></td>
+                <td>4</td>
+                <td><button class="tbl-btn-edit">Edit</button></td>
+              </tr>
+              <tr>
+                <td>ADMS2510</td>
+                <td>Introduction to Management Accounting</td>
+                <td><span class="tag tag-red" style="font-size:10px;padding:2px 8px">Undergraduate</span></td>
+                <td>12</td>
+                <td><button class="tbl-btn-edit">Edit</button></td>
+              </tr>
+              <tr>
+                <td>GRAD5010</td>
+                <td>Advanced Machine Learning</td>
+                <td><span class="tag tag-orange" style="font-size:10px;padding:2px 8px">Graduate</span></td>
+                <td>1</td>
+                <td><button class="tbl-btn-edit">Edit</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── REPORTS ── (matches PNG: REPORTED USER / REPORTED BY / REASON / GROUP / ACTIONS with Ban + Dismiss) -->
+      <div id="tab-reports" style="display:none">
+        <div class="admin-filter-bar">
+          <input class="admin-search-input" type="text" placeholder="Search by user or reason..."
+                 oninput="filterTable('reports-tbody', this.value, [0,1,2,3])" />
+          <button class="filter-btn active" onclick="setFilter(this)">All</button>
+          <button class="filter-btn" onclick="setFilter(this)">Open</button>
+          <button class="filter-btn" onclick="setFilter(this)">Dismissed</button>
+        </div>
+        <div class="admin-table-wrapper">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Reported User</th>
+                <th>Reported By</th>
+                <th>Reason</th>
+                <th>Group</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="reports-tbody">
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center">
+                    <span class="stu-avatar" style="background:#4A7ABF">B</span>Bob
+                  </div>
+                </td>
+                <td>Alice</td>
+                <td>Inappropriate Behaviour</td>
+                <td>ITEC3230 - Morning Study Crew</td>
+                <td>
+                  <div style="display:flex;gap:6px">
+                    <button class="tbl-btn-ban">Ban</button>
+                    <button class="tbl-btn-dismiss">Dismiss</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center">
+                    <span class="stu-avatar" style="background:#9B6BBF">M</span>Mike
+                  </div>
+                </td>
+                <td>Jordan</td>
+                <td>Spam Messages</td>
+                <td>ITEC3010 - Algo Grinders</td>
+                <td>
+                  <div style="display:flex;gap:6px">
+                    <button class="tbl-btn-ban">Ban</button>
+                    <button class="tbl-btn-dismiss">Dismiss</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center">
+                    <span class="stu-avatar" style="background:#BF8A4A">S</span>Sam
+                  </div>
+                </td>
+                <td>Taylor</td>
+                <td>Off-topic Content</td>
+                <td>ITEC4020 - Software Engineering Hub</td>
+                <td>
+                  <div style="display:flex;gap:6px">
+                    <button class="tbl-btn-ban">Ban</button>
+                    <button class="tbl-btn-dismiss">Dismiss</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── STUDENTS ── (matches PNG: STUDENT / EMAIL / LEVEL / GROUPS / STATUS / ACTIONS with Ban/Unban) -->
+      <div id="tab-students" style="display:none">
+        <div class="admin-filter-bar">
+          <input class="admin-search-input" type="text" placeholder="Search by name or email..."
+                 oninput="filterTable('students-tbody', this.value, [0,1])" />
+          <button class="filter-btn active" onclick="setFilter(this)">All</button>
+          <button class="filter-btn" onclick="setFilter(this)">Undergraduate</button>
+          <button class="filter-btn" onclick="setFilter(this)">Graduate</button>
+        </div>
+        <div class="admin-table-wrapper">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Email</th>
+                <th>Level</th>
+                <th>Groups</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="students-tbody">
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center">
+                    <span class="stu-avatar" style="background:var(--red-primary)">A</span>Alice
+                  </div>
+                </td>
+                <td>alice&#64;my.yorku.ca</td>
+                <td><span class="tag tag-red" style="font-size:10px;padding:2px 8px">Undergraduate</span></td>
+                <td>2</td>
+                <td><span class="status-active">Active</span></td>
+                <td><button class="tbl-btn-ban">Ban</button></td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center">
+                    <span class="stu-avatar" style="background:#4A7ABF">B</span>Bob
+                  </div>
+                </td>
+                <td>bob&#64;my.yorku.ca</td>
+                <td><span class="tag tag-red" style="font-size:10px;padding:2px 8px">Undergraduate</span></td>
+                <td>1</td>
+                <td><span class="status-banned">Banned</span></td>
+                <td><button class="tbl-btn-unban">Unban</button></td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center">
+                    <span class="stu-avatar" style="background:#6B9B6B">J</span>Jake
+                  </div>
+                </td>
+                <td>jake&#64;my.yorku.ca</td>
+                <td><span class="tag tag-red" style="font-size:10px;padding:2px 8px">Undergraduate</span></td>
+                <td>4</td>
+                <td><span class="status-active">Active</span></td>
+                <td><button class="tbl-btn-ban">Ban</button></td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center">
+                    <span class="stu-avatar" style="background:#9B6BBF">N</span>Natalie
+                  </div>
+                </td>
+                <td>natalie&#64;my.yorku.ca</td>
+                <td><span class="tag tag-red" style="font-size:10px;padding:2px 8px">Undergraduate</span></td>
+                <td>2</td>
+                <td><span class="status-active">Active</span></td>
+                <td><button class="tbl-btn-ban">Ban</button></td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center">
+                    <span class="stu-avatar" style="background:#BF8A4A">M</span>Maya
+                  </div>
+                </td>
+                <td>maya&#64;my.yorku.ca</td>
+                <td><span class="tag tag-orange" style="font-size:10px;padding:2px 8px">Graduate</span></td>
+                <td>2</td>
+                <td><span class="status-active">Active</span></td>
+                <td><button class="tbl-btn-ban">Ban</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </main>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function switchTab(name, btn) {
+      document.querySelectorAll('[id^="tab-"]').forEach(function(t) {
+        t.style.display = 'none';
+      });
+      document.querySelectorAll('.admin-tab-btn').forEach(function(t) {
+        t.classList.remove('active');
+      });
+      document.getElementById('tab-' + name).style.display = '';
+      btn.classList.add('active');
+    }
+
+    function setFilter(btn) {
+      btn.closest('.admin-filter-bar').querySelectorAll('.filter-btn').forEach(function(b) {
+        b.classList.remove('active');
+      });
+      btn.classList.add('active');
+    }
+
+    function filterTable(tbodyId, query, cols) {
+      var q = query.toLowerCase();
+      document.querySelectorAll('#' + tbodyId + ' tr').forEach(function(row) {
+        var match = cols.some(function(i) {
+          return row.cells[i] && row.cells[i].textContent.toLowerCase().indexOf(q) !== -1;
+        });
+        row.style.display = match ? '' : 'none';
+      });
+    }
+
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('tbl-btn-ban')) {
+        if (confirm('Ban this user from StudyLink?')) {
+          var td = e.target.closest('tr').querySelector('td:nth-child(5)');
+          td.innerHTML = '<span class="status-banned">Banned</span>';
+          e.target.textContent = 'Unban';
+          e.target.className = 'tbl-btn-unban';
+        }
+      }
+      if (e.target.classList.contains('tbl-btn-unban')) {
+        var td = e.target.closest('tr').querySelector('td:nth-child(5)');
+        td.innerHTML = '<span class="status-active">Active</span>';
+        e.target.textContent = 'Ban';
+        e.target.className = 'tbl-btn-ban';
+      }
+      if (e.target.classList.contains('tbl-btn-dismiss')) {
+        var row = e.target.closest('tr');
+        row.style.opacity = '0.4';
+        row.style.pointerEvents = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
