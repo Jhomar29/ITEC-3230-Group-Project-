@@ -10,28 +10,37 @@
 <body>
   <div class="app-layout">
 
-    <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar-logo">StudyLink</div>
       <nav class="sidebar-nav">
         <a href="dashboard.html" class="sidebar-link">Dashboard</a>
         <a href="find-groups.html" class="sidebar-link">Find Groups</a>
         <a href="profile.html" class="sidebar-link active">Profile</a>
+        <a href="admin.html" class="sidebar-link">Admin</a>
       </nav>
+      <div class="sidebar-action-divider"></div>
+      <div class="sidebar-actions">
+        <a href="login.html" class="sidebar-action-link danger">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          Log Out
+        </a>
+      </div>
       <div class="sidebar-user">
         <div class="sidebar-avatar">U</div>
         <div class="sidebar-user-info">
           <div class="name">User</div>
-          <div class="email">user@gmail.com</div>
+          <div class="email">user&#64;gmail.com</div>
         </div>
       </div>
     </aside>
 
-    <!-- Content -->
     <main class="content-area">
       <div class="page-title mb-20">Profile</div>
 
-      <!-- Profile header -->
       <div class="profile-header-card mb-20">
         <div class="profile-avatar-lg">U</div>
         <div>
@@ -40,18 +49,15 @@
         </div>
       </div>
 
-      <!-- Edit Information -->
       <div class="edit-info-card">
         <div class="edit-info-title">Edit Information</div>
-
         <div class="form-grid">
-          <!-- Full Name -->
+
           <div class="form-field">
             <label class="form-label">Full Name</label>
             <input class="form-input" type="text" placeholder="Full Name" />
           </div>
 
-          <!-- Major (Dropdown) -->
           <div class="form-field">
             <label class="form-label">Major</label>
             <select class="form-input">
@@ -63,7 +69,6 @@
             </select>
           </div>
 
-          <!-- Study Year (Dropdown) -->
           <div class="form-field">
             <label class="form-label">Study Year</label>
             <select class="form-input">
@@ -76,23 +81,20 @@
             </select>
           </div>
 
-          <!-- Minor -->
           <div class="form-field">
             <label class="form-label">Minor</label>
             <input class="form-input" type="text" placeholder="Minor" />
           </div>
 
-          <!-- Interests -->
           <div class="form-field">
             <label class="form-label">Interests</label>
             <input class="form-input" type="text" placeholder="Interests" />
           </div>
 
-          <!-- Degree Type (Dropdown) -->
           <div class="form-field">
             <label class="form-label">Degree Type</label>
             <select class="form-input">
-              <option>Selec Degree</option>
+              <option>Select Degree</option>
               <option>Bachelor of Science</option>
               <option>Bachelor of Commerce</option>
               <option>Bachelor of Arts</option>
@@ -102,7 +104,7 @@
           </div>
         </div>
 
-        <div class="form-actions" style="margin-top:16px; display:flex; justify-content:flex-end;">
+        <div class="form-actions" style="margin-top:16px">
           <button class="btn-primary">Save Changes</button>
         </div>
       </div>
