@@ -9,6 +9,7 @@
 </head>
 <body>
   <div class="app-layout">
+
     <aside class="sidebar">
       <div class="sidebar-logo">StudyLink</div>
       <nav class="sidebar-nav">
@@ -17,40 +18,319 @@
         <a href="profile.html" class="sidebar-link">Profile</a>
         <a href="admin.html" class="sidebar-link">Admin</a>
       </nav>
+      <div class="sidebar-action-divider"></div>
+      <div class="sidebar-actions">
+        <a href="login.html" class="sidebar-action-link danger">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          Log Out
+        </a>
+      </div>
       <div class="sidebar-user">
         <div class="sidebar-avatar">U</div>
         <div class="sidebar-user-info">
           <div class="name">User</div>
-          <div class="email">user@gmail.com</div>
+          <div class="email">user&#64;gmail.com</div>
         </div>
       </div>
     </aside>
 
     <main class="content-area">
-      <div class="base-page-shell">
-        <div class="base-page-header">
-          <div>
-            <div class="page-title">Group Chat</div>
-            <div class="page-subtitle">Base layout only</div>
+      <div class="d-flex align-center justify-between mb-20">
+        <a class="back-link" href="dashboard.html">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+          Back
+        </a>
+        <button class="btn-danger">Leave Group</button>
+      </div>
+
+      <div class="text-center mb-20">
+        <div class="font-display fw-700" style="font-size:22px">ITEC3230 - Morning Study Crew</div>
+        <div class="text-muted fs-12">ITEC3230 - Designing User Interfaces</div>
+      </div>
+
+      <div class="group-chat-layout">
+
+        <div class="chat-panel">
+          <div class="chat-tabs">
+            <div class="chat-tab-item active" onclick="switchTab('chat', this)">Chat</div>
+            <div class="chat-tab-item" onclick="switchTab('schedule', this)">Schedule</div>
+            <div class="chat-tab-item" onclick="switchTab('members', this)">Members</div>
           </div>
-          <div class="base-button-row">
-            <a href="dashboard.html" class="btn-secondary">Back</a>
-            <button class="btn-danger">Leave Group</button>
+
+          <!-- CHAT TAB -->
+          <div id="tab-chat" class="tab-panel active">
+            <div class="chat-messages" id="chatMessages">
+              <div class="message-row">
+                <div class="msg-avatar">A</div>
+                <div class="msg-bubble">
+                  <div class="msg-sender">Alex</div>
+                  <div class="msg-text">Hey everyone! Ready for the Week 5 review session?</div>
+                  <div class="msg-time">2:18 PM</div>
+                </div>
+              </div>
+              <div class="message-row">
+                <div class="msg-avatar" style="background:#4A7ABF">S</div>
+                <div class="msg-bubble">
+                  <div class="msg-sender">Sara</div>
+                  <div class="msg-text">Yes! I had a question about the prototype wireframing section &#x1F914;</div>
+                  <div class="msg-time">2:20 PM</div>
+                </div>
+              </div>
+              <div class="message-row own">
+                <div class="msg-avatar" style="background:#6B9B6B">U</div>
+                <div class="msg-bubble">
+                  <div class="msg-sender">You</div>
+                  <div class="msg-text">Same — let's cover that first when we meet!</div>
+                  <div class="msg-time">2:22 PM</div>
+                </div>
+              </div>
+              <div class="message-row">
+                <div class="msg-avatar">A</div>
+                <div class="msg-bubble">
+                  <div class="msg-sender">Alex</div>
+                  <div class="msg-text">Library Room 214 at 2:30 — see you all there &#x1F4DA;</div>
+                  <div class="msg-time">2:24 PM</div>
+                </div>
+              </div>
+              <div class="message-row">
+                <div class="msg-avatar" style="background:#9B6BBF">J</div>
+                <div class="msg-bubble">
+                  <div class="msg-sender">Jordan</div>
+                  <div class="msg-text">Can we cover usability heuristics from lecture 6? I'm a bit lost.</div>
+                  <div class="msg-time">2:26 PM</div>
+                </div>
+              </div>
+              <div class="message-row own">
+                <div class="msg-avatar" style="background:#6B9B6B">U</div>
+                <div class="msg-bubble">
+                  <div class="msg-sender">You</div>
+                  <div class="msg-text">Good idea Jordan, adding that to the agenda &#x1F44D;</div>
+                  <div class="msg-time">2:27 PM</div>
+                </div>
+              </div>
+            </div>
+            <div class="chat-input-bar">
+              <input class="chat-input" type="text" placeholder="Send Message..." id="msgInput" onkeydown="sendOnEnter(event)" />
+              <button class="send-btn" onclick="sendMessage()">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <line x1="22" y1="2" x2="11" y2="13"/>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- SCHEDULE TAB -->
+          <div id="tab-schedule" class="tab-panel">
+            <div class="schedule-panel">
+              <div class="schedule-section-title">Upcoming</div>
+
+              <div class="session-item">
+                <div class="session-date-block">
+                  <div class="session-day">04</div>
+                  <div class="session-month">Mar</div>
+                </div>
+                <div class="session-info">
+                  <div class="session-info-title">Week 5 Review</div>
+                  <div class="session-info-meta">
+                    <span>
+                      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      2:30 &ndash; 4:00 PM
+                    </span>
+                    <span>
+                      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                      Library Room 214
+                    </span>
+                  </div>
+                </div>
+                <span class="session-badge">Upcoming</span>
+              </div>
+
+              <div class="session-item">
+                <div class="session-date-block" style="background:#4A7ABF">
+                  <div class="session-day">08</div>
+                  <div class="session-month">Mar</div>
+                </div>
+                <div class="session-info">
+                  <div class="session-info-title">Usability Heuristics Deep Dive</div>
+                  <div class="session-info-meta">
+                    <span>
+                      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      5:00 &ndash; 6:30 PM
+                    </span>
+                    <span>
+                      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                      Virtual (Zoom)
+                    </span>
+                  </div>
+                </div>
+                <span class="session-badge">Upcoming</span>
+              </div>
+
+              <div class="session-item">
+                <div class="session-date-block" style="background:#9B6BBF">
+                  <div class="session-day">15</div>
+                  <div class="session-month">Mar</div>
+                </div>
+                <div class="session-info">
+                  <div class="session-info-title">Midterm Exam Prep</div>
+                  <div class="session-info-meta">
+                    <span>
+                      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      3:00 &ndash; 5:00 PM
+                    </span>
+                    <span>
+                      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                      Ross N940
+                    </span>
+                  </div>
+                </div>
+                <span class="session-badge">Upcoming</span>
+              </div>
+
+              <button class="add-session-btn">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path d="M12 5v14M5 12h14"/>
+                </svg>
+                Add Session
+              </button>
+
+              <div class="schedule-section-title" style="margin-top:8px">Past Sessions</div>
+
+              <div class="session-item" style="opacity:.55">
+                <div class="session-date-block" style="background:#888">
+                  <div class="session-day">22</div>
+                  <div class="session-month">Feb</div>
+                </div>
+                <div class="session-info">
+                  <div class="session-info-title">Week 4 Review</div>
+                  <div class="session-info-meta">
+                    <span>
+                      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      2:30 &ndash; 4:00 PM
+                    </span>
+                    <span>
+                      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                      Library Room 214
+                    </span>
+                  </div>
+                </div>
+                <span class="session-badge" style="background:rgba(0,0,0,.06);color:#888">Done</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- MEMBERS TAB -->
+          <div id="tab-members" class="tab-panel">
+            <div class="members-panel">
+              <div class="members-count-line">5 Members</div>
+              <div class="member-row">
+                <div class="member-avatar" style="background:var(--red-primary)">A</div>
+                <div class="member-info">
+                  <div class="member-name">Alex Martinez</div>
+                  <div class="member-detail">ITEC 3230 &middot; Year 3</div>
+                </div>
+                <span class="member-badge badge-admin">Admin</span>
+              </div>
+              <div class="member-row">
+                <div class="member-avatar" style="background:#6B9B6B">U</div>
+                <div class="member-info">
+                  <div class="member-name">You</div>
+                  <div class="member-detail">ITEC 3230 &middot; Year 3</div>
+                </div>
+                <span class="member-badge badge-member">Member</span>
+              </div>
+              <div class="member-row">
+                <div class="member-avatar" style="background:#4A7ABF">S</div>
+                <div class="member-info">
+                  <div class="member-name">Sara Kim</div>
+                  <div class="member-detail">ITEC 3230 &middot; Year 2</div>
+                </div>
+                <span class="member-badge badge-member">Member</span>
+              </div>
+              <div class="member-row">
+                <div class="member-avatar" style="background:#9B6BBF">J</div>
+                <div class="member-info">
+                  <div class="member-name">Jordan Lee</div>
+                  <div class="member-detail">ITEC 3230 &middot; Year 3</div>
+                </div>
+                <span class="member-badge badge-member">Member</span>
+              </div>
+              <div class="member-row">
+                <div class="member-avatar" style="background:#BF8A4A">M</div>
+                <div class="member-info">
+                  <div class="member-name">Maya Chen</div>
+                  <div class="member-detail">ITEC 3230 &middot; Year 4</div>
+                </div>
+                <span class="member-badge badge-member">Member</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="base-button-row">
-          <button class="btn-secondary">Chat</button>
-          <button class="btn-secondary">Schedule</button>
-          <button class="btn-secondary">Members</button>
+        <!-- Group Details Sidebar -->
+        <div>
+          <div class="group-details-panel">
+            <div class="group-details-title">Group Details</div>
+            <div class="detail-row"><span class="detail-label">Course</span><span class="detail-value">ITEC 3230</span></div>
+            <div class="detail-row"><span class="detail-label">Admin</span><span class="detail-value">Alex M.</span></div>
+            <div class="detail-row">
+              <span class="detail-label">Privacy</span>
+              <span class="detail-value"><span class="tag tag-green" style="font-size:10px;padding:2px 8px">Public</span></span>
+            </div>
+            <div class="detail-row"><span class="detail-label">Capacity</span><span class="detail-value">20</span></div>
+            <div class="detail-row" style="border:none"><span class="detail-label">Members</span><span class="detail-value">5</span></div>
+            <button class="btn-leave">Leave Group</button>
+          </div>
         </div>
 
-        <div class="base-content-card">
-          <div class="base-card-title">Group Chat Content Area</div>
-          <p class="base-card-text">Messages, schedule details, and member functionality have been removed, leaving a starter page only.</p>
-        </div>
       </div>
     </main>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function switchTab(name, el) {
+      document.querySelectorAll('.chat-tab-item').forEach(function(t) {
+        t.classList.remove('active');
+      });
+      el.classList.add('active');
+      document.querySelectorAll('.tab-panel').forEach(function(p) {
+        p.classList.remove('active');
+      });
+      document.getElementById('tab-' + name).classList.add('active');
+    }
+
+    function sendMessage() {
+      var input = document.getElementById('msgInput');
+      var text = input.value.trim();
+      if (!text) { return; }
+      var container = document.getElementById('chatMessages');
+      var now = new Date();
+      var h = now.getHours();
+      var m = String(now.getMinutes()).padStart(2, '0');
+      var time = (h % 12 || 12) + ':' + m + ' ' + (h >= 12 ? 'PM' : 'AM');
+      var html = '<div class="message-row own">'
+        + '<div class="msg-avatar" style="background:#6B9B6B">U</div>'
+        + '<div class="msg-bubble">'
+        + '<div class="msg-sender">You</div>'
+        + '<div class="msg-text">' + text + '</div>'
+        + '<div class="msg-time">' + time + '</div>'
+        + '</div></div>';
+      container.insertAdjacentHTML('beforeend', html);
+      input.value = '';
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function sendOnEnter(e) {
+      if (e.key === 'Enter') { sendMessage(); }
+    }
+  </script>
 </body>
 </html>
