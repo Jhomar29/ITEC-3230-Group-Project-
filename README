@@ -1,3 +1,36 @@
-This repository is a group project for ITEC 3230.
-Here is the link to the medium fidelity design on Figma. It is still being worked on atm: 
+StudyLink:
+Description: StudyLink is a university-focused study group platform that allows students to create, discover, and join course-based study groups. The system supports real-time group chat, session scheduling, and member management within a structured academic environment.
+
+Features:
+- User Authentication with University Email
+- Create and join public/private study groups
+- Real-time group chat system
+- Study session scheduling
+- Profile Management
+- Admin panel for moderation and system oversight.
+
+Tech Stack:
+- HTML, CSS (Custom + Bootstrap), and Figma (UI Design & Prototyping)
+
+Project Structure:
+/project-root
+|-- login.html
+|-- register.html
+|-- dashboard.html
+|-- find-groups.html
+|-- group-chat.html
+|-- profile.html
+|-- admin.html
+|-- style.css
+
+Design Approach:
+The interface was designed using the medium-fidelity prototypes created in Figma, as well as low-fidelity sketches of the website. The design emphasizes:
+- Consistency across pages
+- Clear navigation
+- Familiar interaction patterns
+- Minimal cognitive load for users.
+
+Here is the link to the medium fidelity design on Figma. 
 https://www.figma.com/design/zaLT85VwLA2Q1AJrrNk42k/ITEC-3230-Mid-Fid?node-id=0-1&t=JK1Pe6uCDaX1AHgq-1
+
+*NOTE: This project is a front-end prototype developed for ITEC 3230 COURSE. Some features are simulated and do not include full backend functionality. 
