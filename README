@@ -14,13 +14,14 @@ Tech Stack:
 
 Project Structure:
 /project-root
-|-- login.html
-|-- register.html
+|-- readme
+|-- admin.html
 |-- dashboard.html
 |-- find-groups.html
 |-- group-chat.html
+|-- login.html
 |-- profile.html
-|-- admin.html
+|-- register.html
 |-- style.css
 
 Design Approach:
